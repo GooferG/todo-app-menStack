@@ -44,4 +44,40 @@ app.post('/', async (req, res) => {
   }
 });
 
+// EDIT or UPDATE METHOD
+app
+  .route('/edit/:id')
+  .get((req, res) => {
+    const id = req.params.id;
+    TodoTask.find({}, (err, tasks) => {
+      res.render('edit.ejs', { todoTasks: tasks, idTask: id });
+    });
+  })
+  .post((req, res) => {
+    const id = req.params.id;
+    TodoTask.findByIdAndUpdate(
+      id,
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+
+      (err) => {
+        if (err) return res.status(500).send(err);
+        res.redirect('/');
+      }
+    );
+  });
+
+// DELETE METHOD
+
+app.route('/remove/:id').get((req, res) => {
+  const id = req.params.id;
+  TodoTask.findByIdAndDelete(id, (err) => {
+    if (err) return res.send(500, err);
+    res.redirect('/');
+  });
+});
+
+// App listening
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
