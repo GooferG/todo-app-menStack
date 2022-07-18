@@ -18,7 +18,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- Stylesheek link -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <section class="todo-container">
@@ -27,7 +27,7 @@
         <form action="/" method="POST" class="todo-header">
           <input type="text" name="title" value="title" />
           <textarea rows="6" cols="45" name="content">content</textarea>
-          <button type="submit"><span class="fas fa-plus">Task</span></button>
+          <button type="submit"><span class="fas fa-plus"></span> Task</button>
         </form>
         <ul class="todo-list">
           <% todoTasks.forEach(task => {%>
